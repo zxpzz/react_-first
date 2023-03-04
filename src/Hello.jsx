@@ -14,24 +14,6 @@ import React from "react"
 // 将函数组件转换成 class 组件
 class Hello extends React.Component{
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //       items: ['item 1', 'item 2', 'item 3']
-    //     };
-    //   }
-
-    //   render() {
-    //     const items = this.state.items.map((item, index) => (
-    //       <li key={index}>{item}</li>
-    //     ));
-      
-    //     return (
-    //       <div>
-    //         <ul>{items}</ul>
-    //       </div>
-    //     );
-    //   }
 
     constructor(props){
         super(props)
