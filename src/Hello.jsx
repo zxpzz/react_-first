@@ -12,6 +12,15 @@ import React from "react"
 // }
 
 // 将函数组件转换成 class 组件
+
+
+function Test(username){
+    return(
+        <div>hello test {username.name.map((users,index)=>(<li key={index}>{users.id}</li>))}</div>
+    )
+}
+
+
 class Hello extends React.Component{
 
 
@@ -62,13 +71,16 @@ class Hello extends React.Component{
      
         return(
             <div>
-            <div>hello world</div>
-            <h2>{this.state.data.toLocaleTimeString()}</h2>
-            <button onClick={()=>{alert(this.state.data.toLocaleTimeString())}}>点击</button>
-            <ul>{this.state.users.map((item,index)=>(<li key={index}>{item.uname}</li>))}</ul>
-        </div>
+                <div>hello world</div>
+                <h2>{this.state.data.toLocaleTimeString()}</h2>
+                <button onClick={()=>{alert(this.state.data.toLocaleTimeString())}}>点击</button>
+                <ul>{this.state.users.map((item,index)=>(<li key={index}>{item.uname}</li>))}</ul>
+
+                {/* 组件可以选择把它的 state 作为 props 向下传递到它的子组件中 */}
+                <Test name={this.state.users} />
+            </div>
         )
     }
 
 }
-export default Hello
+export default Hello 
