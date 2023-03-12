@@ -51,7 +51,9 @@ class Hello extends React.Component{
         super(props)
         this.state={
             data:new Date(),
-            users:[]
+            users:[],
+            val:'',
+            sel:'apple'
         }
     }
 
@@ -105,6 +107,31 @@ class Hello extends React.Component{
         status=!status
     }
 
+    onsub(event){
+        console.log(this.state.val);
+
+
+        // 阻止默认动作执行
+        event.preventDefault()
+
+    }
+    oninput(event){
+        console.log("提交");
+        console.log(event.target.value);
+        this.setState({val:event.target.value},()=>{})
+
+    }
+    onsubs(event){
+        console.log(this.state.sel);
+        event.preventDefault()
+
+    }
+    onselect(event){
+        console.log(event.target.value);
+        this.setState({sel:event.target.value})
+
+    }
+
 
 
 
@@ -113,6 +140,33 @@ class Hello extends React.Component{
         return(
             <div>
 
+            {/*这使得 <input type="text">, <textarea> 和 <select> 之类的标签都非常相似—它们都接受一个 value 属性，
+            你可以使用它来实现受控组件。 */}
+
+                <form onSubmit={this.onsub.bind(this)}>
+                    <label>
+                        表单:
+                        <input type="text" value={this.state.val} onChange={this.oninput.bind(this)}/>
+                    </label>
+                    <label>
+                        <textarea value={this.state.val} onChange={this.oninput.bind(this)}></textarea>
+                    </label>
+                    <input type="submit" value="提交"/>
+                </form>
+
+                {/* select表单 */}
+                <form onSubmit={this.onsubs.bind(this)}>
+                    <label>
+                        请选择
+                        <select value={this.state.sel} onChange={this.onselect.bind(this)}>
+                            <option value="banana">香蕉</option>
+                            <option value="orange">橘子</option>
+                            <option value="apple">苹果</option>
+                        </select>
+                    </label>
+                    <input type="submit" value="提交" />
+                </form>
+                
                 
                 <div>hello world</div>
                 <h2>{this.state.data.toLocaleTimeString()}</h2>
@@ -141,6 +195,9 @@ class Hello extends React.Component{
                
                 {/* 组件可以选择把它的 state 作为 props 向下传递到它的子组件中 */}
                 <Test name={this.state.users} />
+
+
+                
             </div>
         )
     }
